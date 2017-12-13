@@ -12,9 +12,10 @@ from keras.layers.embeddings import Embedding
 file_n = 'train_v1.1.json'
 
 def build_model_synthesis():
+	pass
 
-	
 def build_model_extraction():
+	"""
 	model = Sequential()
 	model.add(Bidirectional(GRU(10, return_sequences=True),
 	                        input_shape=(5, 10)))
@@ -23,3 +24,4 @@ def build_model_extraction():
 	model.add(Activation('softmax'))
 	model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 	return model
+	"""
