@@ -12,7 +12,18 @@ from keras.layers.embeddings import Embedding
 file_n = 'train_v1.1.json'
 
 def build_model_synthesis():
-	pass
+	NUM_WORDS_Q = 15
+	NUM_WORDS_P = 15
+	embedding_size = 300
+	hidden_layer = 150
+	passage_input = Input(shape=(aux_inp.shape[1],1), dtype='float32')
+	question_input = Input(shape=(mn_inp.shape[1],),dtype='float32')
+
+	ht_P = Bidirectional(LSTM(hidden_layer,return_sequences=True))(passage_input)
+	ht_Q = Bidirectional(LSTM(hidden_layer,return_sequences=True))(question_input)
+
+	h1_P = Dense(embedding_size)
+	h1_Q = Dense(embedding_size)
 
 def build_model_extraction():
 	"""
