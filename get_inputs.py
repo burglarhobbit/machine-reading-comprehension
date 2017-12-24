@@ -3,6 +3,7 @@ import numpy as np
 import sys
 import re
 from keras.preprocessing.text import Tokenizer
+from collections import Counter
 
 if (sys.version_info > (3, 0)):
 	import _pickle as pickle
@@ -10,6 +11,7 @@ if (sys.version_info > (3, 0)):
 else:
 	import cPickle as pickle
 	sys_type = 2
+
 # training
 file_t = 'train_v1.1.json'
 
@@ -18,46 +20,55 @@ file_s = 'sample.json'
 
 GLOVE_PATH = "./glove.6B/glove.6B.300d.txt"
 
+
 def tokenize(data):
 	
 	return [i.strip().lower() for i in re.split('(\W+)?', data) if i.strip()]
 			
-def get_all_qpa_tokens(file_n=file_s):
+def get_unique_tokens(file_n=file_t):
 
-	question = ''
-	passage = []
-	answer = ''
-	with open(file_n) as f:
+	questions = []
+	passages = []
+	answers = []
+	is_selected_counter = 0
+	question_counter = 0
+	counter = 0
+	word_count = Counter()
+	with open(file_n, 'r') as f:
 		line = f.readline()
 		#print line
-		dic = json.loads(line)
-		j = []
-		question = dic['query']
-		answer = dic['answers'][0]
-		for i in dic.keys():
-			#print dic[i]
-			j += [i]
-		for i in dic['passages']:
-			#passage.append(i['passage_text'].encode('utf-8').strip())
-			passage_text = i['passage_text']
-			passage.append(i['passage_text'])
-			"""
-			if type(dic[i]) == type({}):
-				for j in dic[i].keys():
-					print i,":",j
-			elif type(dic[i]) == type([]):
-				for k in dic[i]:
-					print k
-			else:
-				print dic[i]
-				#print dic[i]
-			import get_inputs as g
-			g.get_all()
-			"""
-		question = tokenize(question)
-		passage = [tokenize(i) for i in passage]
-		answer = tokenize(answer)
-	return question,passage,answer
+		while(line):
+			dic = json.loads(line)
+			#print counter
+			j = []
+			#question = dic['query']
+			#print line
+			answer = dic['answers']
+			#print answer
+			if answer == []:
+				line = f.readline()
+				continue
+			question_counter += 1
+			multiple_passage = False
+			for i in dic['passages']:
+				#passages.append(i['passage_text'].encode('utf-8').strip())
+				#passage_text = i['passage_text']
+				if int(i['is_selected']) == 1:
+					is_selected_counter+=1
+					if not multiple_passage:
+						multiple_passage = True
+					if multiple_passage:
+						print "copy"
+				#passages.append(i['passage_text'])
+			#question = tokenize(question)
+			#passage = [tokenize(i) for i in passage]
+			#answer = tokenize(answer)
+			line = f.readline()
+			counter+=1
+			#print counter
+	print is_selected_counter
+	print question_counter
+	#return question,passage,answer
 
 def save_glove_300d_dic_numpy(path=GLOVE_PATH):
 	import os
@@ -125,3 +136,5 @@ def get_all_answers():
 
 def get_embeddings(data):
 	embedding = load_embeddings()
+
+get_unique_tokens()
