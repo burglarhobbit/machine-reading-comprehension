@@ -3,7 +3,7 @@
 ## S-NET
 
 - A Tensorflow implementation of [S-NET: FROM ANSWER EXTRACTION TO ANSWER GENERATION FOR MACHINE READING COMPREHENSION](https://arxiv.org/pdf/1706.04815.pdf)
-- This implementation is specifically designed for MS-MARCO, a large-scale dataset drawing attention in the field of QA recently.
+- This implementation is specifically designed for [MS-MARCO](http://www.msmarco.org/), a large-scale dataset drawing attention in the field of QA recently.
 
 ## Usage
 
