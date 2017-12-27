@@ -269,7 +269,7 @@ class R_NET:
 		prob = tf.stack(prob, axis = 1)
 		argmax_idx = tf.argmax(prob, axis=1)
 		pred_si = argmax_idx / opts['span_length']
-		pred_ei = pred_si + tf.cast(tf.mod(argmax_idx , opts['span_length']), tf.float64)
+		pred_ei = pred_si + tf.cast(tf.mod(argmax_idx , opts['span_length']), tf.float64) #tf.float64
 		correct = tf.logical_and(tf.equal(tf.cast(pred_si, tf.int64), tf.cast(answer_si_idx, tf.int64)), 
 								 tf.equal(tf.cast(pred_ei, tf.int64), tf.cast(answer_ei_idx, tf.int64)))
 		accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
@@ -286,6 +286,6 @@ class R_NET:
 		print('Model built')
 		for v in tf.global_variables():
 			print(v.name, v.shape)
-		
+		print('returning model')
 		return input_tensors, loss, accuracy, pred_si, pred_ei
 

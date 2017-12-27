@@ -180,9 +180,10 @@ def get_char_vocab(word_counter):
 	char2idx = {' ':0}
 	idx2char = [' ']
 	max_word_length = 0
-	word_count = [0 for _ in range(37)]
+	word_count = [0 for _ in range(120)] #37 original
 
 	for word in word_counter:
+		print(word)
 		word_count[len(word)-1] +=1
 		max_word_length = max(max_word_length, len(word))
 		for char in word:
@@ -220,12 +221,13 @@ def generate_seq(data_type):
 	word_counter = Counter()
 
 	fpw = open(os.path.join('Data','data_'+data_type+".json"), 'w')
-	
+	#for _ in range(32000):
+	#	next(fpr)
 	line = fpr.readline()
 	ai = 0
 	pi = 0
 	#for ai, article in enumerate(source_data["data"]):
-	while(line and ai<100):
+	while(line and ai<500):
 		if ai%20 == 0:
 			print('processing article',ai)
 		json_line = json.loads(line)
@@ -235,9 +237,17 @@ def generate_seq(data_type):
 		passages_original_sent = []
 
 		answer = json_line['answers']
+		#answer_1 = ''
 		if answer == []:
-			line = f.readline()
+			line = fpr.readline()
 			continue
+		elif len(answer)>1:
+			answer_1 = answer[0].strip()
+			if answer_1 == [] or answer_1 == '':
+				answer_1 = answer[1].strip()
+				print(True)
+		else:
+			answer_1 = answer[0].strip()
 		passage_concat = ''
 		#for pi, p in enumerate(article["paragraphs"]):
 		for passage in json_line['passages']:
@@ -265,18 +275,17 @@ def generate_seq(data_type):
 			word_counter[w] += 1
 
 		#for a in answer:
-		answer = answer[0].strip()
 		#answer_start = int(a['answer_start'])
 		
 		# will have to update with some kind of span prediction using rouge-L
-		answer_start = randint(0,len(passage_concat))
+		answer_start = randint(0,int(len(passage_concat)*8/10))
 
 		#add '.' here, just because NLTK is not good enough in some cases
-		answer_words = word_tokenize(answer + '.')
+		answer_words = word_tokenize(answer_1 + '.')
 		if answer_words[-1] == '.':
 			answer_words = answer_words[:-1]
 		else:
-			answer_words = word_tokenize(answer)
+			answer_words = word_tokenize(answer_1)
 
 		#word level
 		prev_context_words = word_tokenize( passage_concat[:answer_start] )
@@ -285,8 +294,13 @@ def generate_seq(data_type):
 		for i in range(len(answer_words)):
 			if i < len(left_context_words):
 				pos_list.append(len(prev_context_words) + i)
-		print answer_words
-		assert(len(pos_list) > 0)
+		#assert(len(pos_list) > 0)
+		if(len(pos_list) == 0):
+			print(answer_words)
+			print(answer)
+			print(ab)
+			print(question)
+			assert(False)
 
 		# sent level
 		# [sent_idx, word_idx]
@@ -320,8 +334,9 @@ def generate_seq(data_type):
 		articles_original.append(passages_original)
 		articles_original_sent.append(passages_original_sent)
 		ai += 1
-	w2v_100 = get_word2vec('Data/glove.6B.300d.txt', word_counter)
-	#w2v_300 = get_word2vec('Data/glove.840B.300d.txt', word_counter)
+		line = fpr.readline()
+	w2v_100 = get_word2vec('./Data/glove.6B.50d.txt', word_counter)
+	#w2v_300 = get_word2vec('./Data/glove.840B.300d.txt', word_counter)
 	char2idx, idx2char = get_char_vocab(word_counter)
 
 	print(len(data))
@@ -347,8 +362,11 @@ def generate_seq(data_type):
 		with open(os.path.join('Data','idx_table.json'), 'w') as f:
 			json.dump(idx_table, f)
 
-	print('SQuAD '+data_type+' preprossing finished!')
-
+	print('MS Marco '+data_type+' preprossing finished!')
+	"""
+from preprocess import generate_seq as g
+g('train')
+	"""
 def read_data(data_type, opts):
 	return DataProcessor(data_type, opts)
 

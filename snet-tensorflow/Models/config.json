@@ -1,14 +1,14 @@
 {
 	"snet":{  
 		"train":{  
-			"glove": "300",
+			"glove": "50",
 			"share_context_LSTM":true,
-			"char_emb":true,
+			"char_emb":false,
 			"in_keep_prob":0.8,
 			"batch_size":60,
-			"state_size":75,
-			"emb_dim": 300,
-			"word_emb_dim" : 300,
+			"state_size":25,
+			"emb_dim": 50,
+			"word_emb_dim" : 50,
 			"char_max_length" : 37,
 			"char_vocab_size" : 1368, 
 			"char_emb_mat_dim": 8,

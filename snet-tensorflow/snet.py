@@ -1,5 +1,5 @@
 import preprocess
-from Models import model_rnet
+from Models import model_snet_a
 import numpy as np
 import tensorflow as tf
 import argparse
@@ -24,17 +24,20 @@ def run():
 	dp = preprocess.read_data('train', modOpts)
 	num_batches = int(np.floor(dp.num_samples/modOpts['batch_size'])) - 1
 	
-	rnet_model = model_rnet.R_NET(modOpts)
+	rnet_model = model_snet_a.R_NET(modOpts)
 	input_tensors, loss, acc, pred_si, pred_ei = rnet_model.build_model()
 	#train_op = tf.train.AdamOptimizer(args.learning_rate).minimize(loss)
+	print('Model built')
 	train_op = tf.train.AdadeltaOptimizer(1.0, rho=0.95, epsilon=1e-06,).minimize(loss)
-
+	print('1')
 	#saver
 	saver = tf.train.Saver()
 
-	config = tf.ConfigProto()
-	config.gpu_options.allow_growth = True
-	sess = tf.InteractiveSession(config=config)
+	#config = tf.ConfigProto()
+	#config.gpu_options.allow_growth = True
+	#sess = tf.InteractiveSession(config=config)
+	sess = tf.InteractiveSession()
+	print('Session started')
 	if args.load:
 		PATH = 'Models/save/rnet_model0.ckpt'
 		start_epoch = 1
@@ -45,7 +48,7 @@ def run():
 		sess.run(init)
 		f = open('Results/rnet_training_result.txt','w')
 		start_epoch = 0
-
+	print('Training started')
 	for i in range(start_epoch, args.epochs):
 		rl=random.sample(range(num_batches), num_batches)
 		batch_no = 0
