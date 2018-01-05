@@ -180,7 +180,7 @@ def get_char_vocab(word_counter):
 	char2idx = {' ':0}
 	idx2char = [' ']
 	max_word_length = 0
-	word_count = [0 for _ in range(120)] #37 original
+	word_count = [0 for _ in range(107)] #37 original, 107 biggest word length
 
 	for word in word_counter:
 		print(word)
@@ -383,4 +383,5 @@ def run():
 		generate_seq('dev')
 
 if __name__ == "__main__":
-	run()
+	#run()
+	generate_seq('train')

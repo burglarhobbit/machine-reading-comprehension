@@ -46,7 +46,9 @@ class R_NET:
 			self.W_ruQ = self.random_weight(2 * options['state_size'], 2 * options['state_size'], name='W_ruQ')
 			self.W_vQ = self.random_weight(options['state_size'], 2 * options['state_size'], name='W_vQ')
 			self.W_VrQ = self.random_weight(options['q_length'], options['state_size'], name='W_VrQ') # has same size as u_Q
-			self.W_hP = self.random_weight(2 * options['state_size'], options['state_size'], name='W_hP')
+			## changed W_hP to match v_P weights instead of h_P because of snet changes
+			#self.W_hP = self.random_weight(2 * options['state_size'], options['state_size'], name='W_hP')
+			self.W_hP = self.random_weight(options['state_size'], options['state_size'], name='W_hP')
 			self.W_ha = self.random_weight(2 * options['state_size'], options['state_size'], name='W_ha')
 
 			# Biases
@@ -140,12 +142,17 @@ class R_NET:
 			tiled_u_tP = tf.concat( [tf.reshape(u_P[:, t, :], [opts['batch_size'], 1, -1])] * opts['q_length'], 1)
 			W_uP_u_tP = self.mat_weight_mul(tiled_u_tP , self.W_uP)
 			
+			""" Removed as not a part of snet
 			if t == 0:
 				tanh = tf.tanh(W_uQ_u_Q + W_uP_u_tP)
 			else:
 				tiled_v_t1P = tf.concat( [tf.reshape(v_P[t-1], [opts['batch_size'], 1, -1])] * opts['q_length'], 1)
 				W_vP_v_t1P = self.mat_weight_mul(tiled_v_t1P, self.W_vP)
 				tanh = tf.tanh(W_uQ_u_Q + W_uP_u_tP + W_vP_v_t1P)
+			"""
+			# added below line as a replacement of above removed portion
+			tanh = tf.tanh(W_uQ_u_Q + W_uP_u_tP)
+			
 			s_t = tf.squeeze(self.mat_weight_mul(tanh, tf.reshape(self.B_v_QP, [-1, 1])))
 			a_t = tf.nn.softmax(s_t, 1)
 			tiled_a_t = tf.concat( [tf.reshape(a_t, [opts['batch_size'], -1, 1])] * 2 * opts['state_size'] , 2)
@@ -165,6 +172,7 @@ class R_NET:
 		v_P = tf.nn.dropout(v_P, opts['in_keep_prob'])
 		print('v_P', v_P)
 
+		"""
 		print('Self-Matching Attention')
 		SM_star = []
 		for t in range(opts['p_length']):
@@ -193,7 +201,8 @@ class R_NET:
 			h_P = tf.stack(SM_outputs, 1)
 		h_P = tf.nn.dropout(h_P, opts['in_keep_prob'])
 		print('h_P', h_P)
-		
+		"""
+
 		print('Output Layer')
 		# calculate r_Q
 		W_ruQ_u_Q = self.mat_weight_mul(u_Q, self.W_ruQ) # [batch_size, q_length, 2 * state_size]
@@ -212,7 +221,10 @@ class R_NET:
 		h_a = None
 		p = [None for _ in range(2)]
 		for t in range(2):
-			W_hP_h_P = self.mat_weight_mul(h_P, self.W_hP) # [batch_size, p_length, state_size]
+			### changed because of removal of self-matching attention
+			#W_hP_h_P = self.mat_weight_mul(h_P, self.W_hP) # [batch_size, p_length, state_size]
+			print(self.W_hP)
+			W_hP_v_P = self.mat_weight_mul(v_P, self.W_hP) # [batch_size, p_length, state_size]
 			
 			if t == 0:
 				h_t1a = r_Q
@@ -222,13 +234,16 @@ class R_NET:
 			tiled_h_t1a = tf.concat( [tf.reshape(h_t1a, [opts['batch_size'], 1, -1])] * opts['p_length'], 1)
 			W_ha_h_t1a = self.mat_weight_mul(tiled_h_t1a , self.W_ha)
 			
-			tanh = tf.tanh(W_hP_h_P + W_ha_h_t1a)
+			tanh = tf.tanh(W_hP_v_P + W_ha_h_t1a)
 			s_t = tf.squeeze(self.mat_weight_mul(tanh, tf.reshape(self.B_v_ap, [-1, 1])))
 			a_t = tf.nn.softmax(s_t, 1)
 			p[t] = a_t
 
-			tiled_a_t = tf.concat( [tf.reshape(a_t, [opts['batch_size'], -1, 1])] * 2 * opts['state_size'] , 2)
-			c_t = tf.reduce_sum( tf.multiply(tiled_a_t, h_P) , 1) # [batch_size, 2 * state_size]
+			## replaced the lines with appropriate snet representation. i.e v_P instead of h_P
+			#tiled_a_t = tf.concat( [tf.reshape(a_t, [opts['batch_size'], -1, 1])] * 2 * opts['state_size'] , 2)
+			tiled_a_t = tf.concat( [tf.reshape(a_t, [opts['batch_size'], -1, 1])] * opts['state_size'] , 2)
+			#c_t = tf.reduce_sum( tf.multiply(tiled_a_t, h_P) , 1) # [batch_size, 2 * state_size]
+			c_t = tf.reduce_sum( tf.multiply(tiled_a_t, v_P) , 1) # [batch_size, state_size]
 
 			if t == 0:
 				AnsPtr_state = self.AnsPtr_cell.zero_state(opts['batch_size'], dtype=tf.float32)
