@@ -24,6 +24,3 @@ snet_ee2 -> -> old, irrelevant
 snet_ee3 -> -> old, irrelevant
 snet_pr_multipara -> -> old, irrelevant
 snet_with_answer_synthesis -> -> old, irrelevant
-snet_without_pr -> -> old, irrelevant
-snet_without_pr_test -> -> old, irrelevant
-snet_with_pr -> -> old, irrelevant
