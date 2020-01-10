@@ -2,6 +2,7 @@
 
 :+1: 1. local_span
 	* ROUGE-L span limited to only 1 paragraph during preprocessing. Loss is converging upto some point. **Stable**.
+
 :heavy_exclamation_mark: 2. local_span_single_para
 	* Only trained on 1 paragraph from every question from which the answer belongs. Stable but **not relevant**.
 :heavy_exclamation_mark: 3. local_span_with_high_dim
