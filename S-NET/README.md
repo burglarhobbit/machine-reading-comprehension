@@ -53,7 +53,7 @@ python config_msm.py --mode train/test
 	* I had to use Python for loop for that, since it needs to run the tf.cond at least once, I needed instantiated RNN objects. But also, inside the code, if the actual para count is less then the max allowed limit, then when actual para number gets exceeded during tensorflow training session, vp is not computed for those indexes and previous index's results are returned (DUMMY function).
 	* After that, vps are again sliced using a boolean mask for representing all paras as a single concatenated one without any padding in between.
 
-7. :+1: [snet_refactored_from_rnet_with_pr](https://github.com/burglarhobbit/machine-reading-comprehension/tree/master/S-NET/6_snet_refactored_from_rnet_with_pr) (model2.py)
+7. :+1: [snet_refactored_from_rnet_with_pr](6_snet_refactored_from_rnet_with_pr) (model2.py)
 	* Same as above, but with passage ranking
 8. :large_blue_circle: snet_refactored_from_rnet_with_pr_floyd -> code for running on floyd cloud
 9. :large_blue_circle: snet_refactored_from_rnet_with_pr_newgru -> ???
@@ -70,7 +70,7 @@ python config_msm.py --mode train/test
 	* Pending: append fs and fe vectors.
 14. :large_blue_circle: nmt_snet_4
 	* working with question data integration + fs,fe vector append. (With all model changes)
-15. :+1: [nmt_snet_5](https://github.com/burglarhobbit/machine-reading-comprehension/tree/master/S-NET/nmt_snet_5)
+15. :+1: [nmt_snet_5](nmt_snet_5)
 	* working with snet_ee (6, 7) data integration
 16. :heavy_exclamation_mark: nmt_snet_ans_syn (idk?)
 17. :heavy_exclamation_mark: snet_ee

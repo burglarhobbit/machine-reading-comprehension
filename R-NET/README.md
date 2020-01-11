@@ -34,7 +34,7 @@ python config_msm.py --mode train/test
 
 # R-NET IMPLEMENTATION TRACKER:
 
-1. :+1: [local_span](https://github.com/burglarhobbit/machine-reading-comprehension/tree/master/R-NET/local_span)
+1. :+1: [local_span](local_span)
 	* ROUGE-L span limited to only 1 paragraph during preprocessing. Loss is converging upto some point. **Stable**.
 2. :heavy_exclamation_mark: local_span_single_para
 	* Only trained on 1 paragraph from every question from which the answer belongs. Stable but **not relevant**.
