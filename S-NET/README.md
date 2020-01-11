@@ -35,6 +35,8 @@ python config_msm.py --mode train/test
 # S-NET IMPLEMENTATION TRACKER:
 
 ### Evidence Extraction
+(Best model version is linked) 
+
 ---
 1. :heavy_exclamation_mark: snet_without_pr: SNET without passage ranking
 	* Hard coding tensorflow build using Pythonic for-loops on preconfigured number of paragraphs, regardless of how many actual paragraphs are there. **Inefficient.**
@@ -58,6 +60,7 @@ python config_msm.py --mode train/test
 9. :large_blue_circle: snet_refactored_from_rnet_with_pr_newgru -> ???
 
 ### Answer Synthesis
+(Best model version is linked)
 ---
 
 10. :large_blue_circle: nmt
