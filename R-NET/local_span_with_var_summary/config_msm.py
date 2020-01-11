@@ -148,52 +148,5 @@ def main(_):
 		print("Unknown mode")
 		exit(0)
 
-def send():
-	import smtplib
-	from email.mime.image import MIMEImage
-	from email.mime.multipart import MIMEMultipart
-	config = flags.FLAGS
-	
-	if config.bd == "bd":
-		return
-	user = "bhavyapatwa007@gmail.com"
-	subject = "Train/Dev results on MS-MARCO"
-	body = "Please find the scores attached"
-	recipient = [user]
-	gmail_user = user
-	gmail_pwd = bd(bd(config.bd))
-	FROM = user
-	TO = recipient if type(recipient) is list else [recipient]
-	SUBJECT = subject
-	TEXT = body
-	message = """From: %s\nTo: %s\nSubject: %s\n\n%s
-	""" % (FROM, ", ".join(TO), SUBJECT, TEXT)
-	COMMASPACE = ', '
-	msg = MIMEMultipart()
-	msg['Subject'] = subject
-	msg['From'] = user
-	msg['To'] = COMMASPACE.join(recipient)
-	msg.preamble = 'asasas'
-	files = ['dev.png','train.png']
-	pngfiles = []
-	for i in files:
-		pngfiles.append(os.path.join(log_dir,i))
-
-	for file in pngfiles:
-		with open(file, 'rb') as fp:
-			img = MIMEImage(fp.read())
-		msg.attach(img)
-
-	try:
-		server = smtplib.SMTP("smtp.gmail.com:587")
-		server.ehlo()
-		server.starttls()
-		server.login(gmail_user, gmail_pwd)
-		server.send_mesage(msg)
-		server.close()
-		print('successfully sent the mail')
-	except:
-		print("failed to send mail")
-
 if __name__ == "__main__":
 	tf.app.run()
