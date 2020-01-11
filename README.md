@@ -4,9 +4,10 @@
 - Part of my Bachelor's project. Find the [report](https://github.com/burglarhobbit/machine-reading-comprehension/blob/master/BTP_2_Report.pdf) and [presentation](https://github.com/burglarhobbit/machine-reading-comprehension/blob/master/BTP%20-%202%20Presentation.pdf) here.
 - Detailed Description (READMEs) in the respective project folders.
 ---
+
 # Search System
 
- Created a search-system website that performed Document Search using (DrQA) and then extracted an answer from a pre-selected choice of different pretrained R-NET/S-NET models. An admin interface was also developed to control what kind of models are preloaded. (README not available).
+- Created a search-system website that performed Document Search using (DrQA) and then extracted an answer from a pre-selected choice of different pretrained R-NET/S-NET models. An admin interface was also developed to control what kind of models are preloaded. (README not available).
 ---
 
 - Mentor: [Pankaj Singh](https://www.linkedin.com/in/pankaj-singh-b000894a/), IIT-Bombay
