@@ -3,8 +3,6 @@
 
 ## Requirements
 
-There have been a lot of known problems caused by using different software versions. Please check your versions before opening issues or emailing me.
-
 #### General
   * Python >= 3.4
   * unzip, wget
@@ -18,7 +16,7 @@ There have been a lot of known problems caused by using different software versi
 
 * Download the Question Answering (V1.1) [dataset](http://www.msmarco.org/dataset.aspx).
 * Extract in `~/data/msmarco`
-* Download[GloVe 840B 300d](http://nlp.stanford.edu/data/glove.840B.300d.zip)
+* Download [GloVe 840B 300d](http://nlp.stanford.edu/data/glove.840B.300d.zip)
 * Extract in `~/data/glove`
 
 To preprocess the data, run
@@ -28,7 +26,7 @@ To preprocess the data, run
 python config_msm.py --mode analyze
 ```
 
-Hyper parameters are stored in config.py. To debug/train/test the model, run
+Hyper parameters are stored in config_msm.py. To train/test the model, run
 
 ```bash
 python config_msm.py --mode train/test
