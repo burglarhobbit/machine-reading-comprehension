@@ -2,7 +2,7 @@
 
 - Implemented [R-NET](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf) and [S-NET](https://arxiv.org/pdf/1706.04815.pdf) on the [MS-MARCO](http://www.msmarco.org) dataset. 
 - Part of my Bachelor's project. Find the [report](https://github.com/burglarhobbit/machine-reading-comprehension/blob/master/BTP_2_Report.pdf) and [presentation](https://github.com/burglarhobbit/machine-reading-comprehension/blob/master/BTP%20-%202%20Presentation.pdf) here.
-- Detailed Description in the respective project README.
+- Detailed Description in the respective project README. [R-NET Readme](https://github.com/burglarhobbit/machine-reading-comprehension/blob/master/R-NET/README.md) [S-NET Readme](https://github.com/burglarhobbit/machine-reading-comprehension/blob/master/S-NET/README.md)
 - Mentor: [Pankaj Singh](https://www.linkedin.com/in/pankaj-singh-b000894a/), IIT-Bombay
 
 ---
