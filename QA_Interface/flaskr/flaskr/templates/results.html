@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+   <body>
+		<form action = "/extract" method = "post">
+			<label> Enter Question: </label>
+			<input type = "text" name = "ques" />
+			<br><br>
+			<label> Top N: </label>
+			<select name="topn">
+				<option value="1"> 1 </option>
+				<option value="2"> 2 </option>
+				<option value="3"> 3 </option>
+				<option value="4"> 4 </option>
+				<option value="5"> 5 </option>
+			</select>
+			<br><br>
+			<label> Select Model: </label>
+			<select name="model">
+				<option value="drqa"> DrQa </option>
+				<option value="lorem"> Lorem </option>
+				<option value="ipsum"> ipsum </option>
+				<option value="dolor"> dolor </option>
+				<option value="sit"> sit </option>
+			</select>
+			<br><br>
+			<label><input type = "submit" value = "submit" /></label>
+			
+		</form>
+
+		<h3> Question: {{result.ques}} </h3>
+		<table border = 1 >
+			<tr>
+				{% for i in result.headers %}
+					<th> {{i}} </th>
+				{% endfor %}
+			{% for i in result.scores %}
+				<tr>
+				{% for j in i %}
+					<td> {{ j }} </td>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		  </table>
+	
+	</body>
+</html>

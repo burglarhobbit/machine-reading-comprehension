@@ -1,0 +1,39 @@
+<h2> Welcome to NVLI Question Answering System </h2>
+			
+<form action = "/nvli-search/extract_new" method = "post"> 
+	<input name="ques" type="search" id="search" placeholder="Enter Question..." />
+	<button class="icon" id = "searchButton"><i class="fa fa-search"></i></button>
+	<br><br>
+	<label> Top N: </label>
+	<select name="topn">
+			<option value="1"> 1 </option>
+			<option value="2"> 2 </option>
+			<option value="3"> 3 </option>
+			<option value="4"> 4 </option>
+			<option value="5" selected="selected"> 5 </option>
+			<option value="6"> 6 </option>
+			<option value="7"> 7 </option>
+			<option value="8"> 8 </option>
+			<option value="9"> 9 </option>
+			<option value="10"> 10 </option>
+		</select>
+
+	<input type="checkbox" name="context_check" value="show_context" checked>
+	<label id="rpp"> Show Context </label>
+	<br><br>
+	<label id="rpp"> Select Search Model: </label>
+	<select name="model">
+		{% for i in result.models %}
+			<option value="{{ "" ~ i[0] }}"> {{ i[1] }} </option>					
+		{% endfor %}
+		<!--<option value="drqa"> DrQa </option>-->
+	</select>
+	<br><br>
+	<label id="retrieval"> Select Retrieval Model: </label>
+	<select name="retrieval_model">
+		{% for i in result.retrieval_models %}
+			<option value="{{ "" ~ i[0] }}"> {{ i[1] }} </option>					
+		{% endfor %}
+		<!--<option value="drqa"> DrQa </option>-->
+	</select>
+</form>

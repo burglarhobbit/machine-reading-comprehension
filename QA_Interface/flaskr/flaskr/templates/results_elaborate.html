@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+   <body>
+		<form action = "/extract_more" method = "post">
+			<label> Ask new Question: </label>
+			<input type = "text" name = "ques" />
+			<br><br>
+			<label> Top N: </label>
+			<select name="topn">
+				<option value="1"> 1 </option>
+				<option value="2"> 2 </option>
+				<option value="3"> 3 </option>
+				<option value="4"> 4 </option>
+				<option value="5"> 5 </option>
+			</select>
+			<label><input type = "submit" value = "submit" /></label>
+			
+		</form>
+		<h3> Question: {{result.ques}} </h3>
+		<table border = 1 >
+			<tr>
+				<th>  Rank    		</th>
+				<th>  Answer  		</th>
+				<th>  Doc  	  		</th>
+				<th>  Answer Score  </th>
+				<th>  Doc Score  	</th>
+			</tr>
+			{% for i in result.scores %}
+				<tr>
+				{% for j in i %}
+					<td> {{ j }} </td>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+		<h3> Context: </h3>
+		{% for j,i in enumerate(result.text, 1) %}
+			<label> <b>Context {{j}}: </b> </label>
+			<label> {{i}} </label>
+			<br> <br>
+		{% endfor %}
+	
+	</body>
+</html>

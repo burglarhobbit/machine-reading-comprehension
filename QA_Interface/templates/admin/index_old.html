@@ -1,0 +1,76 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="row-fluid">
+
+    <div>
+        {% if current_user.is_authenticated %}
+        <h1>NVLI-Admin </h1>
+        <!--<p class="lead">
+            Authentication
+        </p>
+        <p>
+            This example shows how you can use Flask-Login for authentication. It is only intended as a basic demonstration.
+        </p>-->
+        <h3 style="color:black"> Models:  </h3>
+            <form action = "/admin/toggle_model" method = "post">
+                <table border = 1 style="color:black">
+                    <tr>
+                        <th> Model Name </th>
+                        <th> Model Version </th>
+                        <th> Model Status </th>
+                        <th> Toggle </th>
+                    </tr>
+                    {% for i,model_info in enumerate(result.models,1) %}
+                        <tr>
+                                    <td> {{ model_info.name }} </td>
+                                    <td> {{ model_info.version }} </td>
+                                    {% if model_info.flag == 1 %}
+                                    <td> Enabled </td>
+                                    <td>                                        
+                                        <input type="submit" name="{{ "" ~  model_info.mv_id }}" value="Disable">   
+                                    </td>
+                                    {% else %}
+                                    <td> Disabled </td>
+                                    <td>                                        
+                                        <input type="submit" name="{{ "" ~  model_info.mv_id }}" value="Enable">
+                                    </td>
+                                    {% endif %} 
+                        </tr>
+                    {% endfor %}
+                    <br>
+                </table>
+                <input type="hidden" name="model_type" value="model">                
+            </form>
+            <form action = "/admin/toggle_model" method = "post">
+                <table border = 1 style="color:black">
+                    <tr>
+                        <th> Model Name </th>
+                        <th> Model Status </th>
+                        <th> Toggle </th>
+                    </tr>
+                    {% for i,model_info in enumerate(result.retrieval_models,1) %}
+                        <tr>
+                                    <td> {{ model_info.name }} </td>
+                                    {% if model_info.flag == 1 %}
+                                    <td> Enabled </td>
+                                    <td>                                        
+                                        <input type="submit" name="{{ "" ~  model_info.model_id }}" value="Disable">   
+                                    </td>
+                                    {% else %}
+                                    <td> Disabled </td>
+                                    <td>                                        
+                                        <input type="submit" name="{{ "" ~  model_info.model_id }}" value="Enable">
+                                    </td>
+                                    {% endif %} 
+                        </tr>
+                    {% endfor %}
+                </table>
+                <input type="hidden" name="model_type" value="retrieval_model">
+            </form>
+        {% endif %}
+    </div>
+
+    <a class="btn btn-primary" href="/admin"><i class="icon-arrow-left icon-white"></i> Back</a>
+</div>
+{% endblock body %}

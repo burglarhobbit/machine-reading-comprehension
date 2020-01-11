@@ -1,0 +1,77 @@
+<html>
+
+{% include "headers.html" %}
+
+<body>
+	<div class="box">
+		<div class="container-4">
+			
+			{% include "search_form.html" %}
+			
+			<h3 style="color:white"> Question: {{result.ques}} </h3>
+			<form action = "/nvli-search/submit_feedback" method = "post">
+				<table border = 1 style="color:white">
+					<tr>
+						{% for i in result.headers %}
+							<th> {{i}} </th>
+						{% endfor %}
+					</tr>
+					
+					{% for i,scores in enumerate(result.scores,1) %}
+						<tr>
+							{% for j,score in enumerate(scores) %}
+								{% if j == 0 %}
+									<td>										
+										<label for='regular'> {{score}} </label>	
+									</td>		
+								{% else %}
+									<td> {{ score }} </td>
+								{% endif %}
+							{% endfor %}
+							<td align="center">
+								<div class="radioinput">
+									<input type="radio" id='regular' name="optradio" value="{{ "" ~  i }}">
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+					<tr> <!-- -->
+						{% set columns = result.headers|length - 2 %}
+						{% set rank_0 = 0 %}
+						<td>
+							<div class="radiotext">
+								<label for='regular'> {{ rank_0 }} </label>
+							</div>
+						</td>
+						<td colspan="{{ "" ~  columns|string }}" align="center"> None </td>
+						<td align="center"> 
+							<input type="radio" id='regular' name="optradio" value="{{ "" ~  rank_0 }}">
+						</td>
+					</tr>
+					<br>
+				</table>
+				<input type="hidden" name="query_id" value="{{ "" ~ result.query_id }}">
+				<input type="submit" name="submit_feedback" value="Submit Feedback", style="float: right;width: 24.5%">
+				<!--<input type="text" name="correct_answer_feedback" placeholder="Your preferred correct answer...", style="float: right; width: 30%">-->
+				
+			</form>
+			<br>
+			{% if result.show_context == 'True' %}
+				{% for j,i in enumerate(result.output_text, 1) %}
+					<label id="full_width"> <b> Context {{j}}: </b> </label>
+					<label id="full_width"> {{i}} </label>
+					<br> <br>
+				{% endfor %}
+				<!--
+				{% for j,i in enumerate(get_flashed_messages(), 1) %}
+					<label> <b> Context {{j}}: </b> </label>
+					<label> {{i}} </label>
+					<br> <br>
+				{% endfor %}
+				-->
+			{% endif %}
+		</div>	
+	</div>
+
+</body>
+</html>

@@ -12,7 +12,7 @@
   * tqdm
   * ujson
 
-# HOW TO RUN
+## HOW TO RUN
 
 * Download the Question Answering (V1.1) [dataset](http://www.msmarco.org/dataset.aspx).
 * Extract in `~/data/msmarco`

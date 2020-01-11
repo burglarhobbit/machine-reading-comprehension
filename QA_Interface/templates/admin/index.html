@@ -1,0 +1,50 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="row-fluid">
+
+    <div>
+        {% if current_user.is_authenticated %}
+        <h1>NVLI-Admin</h1>
+        <p class="lead">
+            Welcome {{ current_user.first_name }}
+        </p>
+        <p>
+            This is the home page of NVLI-Admin. Some links to view:
+        </p>
+
+        <p>
+            <h5>
+                <a href="http://10.129.2.77:9001/admin/list_all_models"> List and Toggle All Models </a>
+            </h5>
+        </p>
+        <p>
+            <h5>
+                <a href="http://10.129.2.77:9001/admin/query_log"> Query Log </a>
+            </h5>
+        </p>
+        {% else %}
+        <form method="POST" action="">
+            {{ form.hidden_tag() if form.hidden_tag }}
+            {% for f in form if f.type != 'CSRFTokenField' %}
+            <div>
+            {{ f.label }}
+            {{ f }}
+            {% if f.errors %}
+            <ul>
+                {% for e in f.errors %}
+                <li>{{ e }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            </div>
+            {% endfor %}
+            <button class="btn" type="submit">Submit</button>
+        </form>
+        <!--{{ link | safe }}-->
+        {% endif %}
+    </div>
+
+    <a class="btn btn-primary" href="/"><i class="icon-arrow-left icon-white"></i> Back</a>
+</div>
+{% endblock body %}

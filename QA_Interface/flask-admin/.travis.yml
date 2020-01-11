@@ -1,0 +1,24 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+  - "3.3"
+
+env:
+  - WTFORMS_VERSION=1
+  - WTFORMS_VERSION=2
+
+services:
+  - postgresql
+  - mongodb
+
+before_script:
+  - psql -U postgres -c 'CREATE DATABASE flask_admin_test;'
+  - psql -U postgres -c "CREATE EXTENSION postgis;" flask_admin_test
+
+install:
+  - pip install "wtforms<$WTFORMS_VERSION.99"
+  - pip install -r dev-requirements.txt
+
+
+script: nosetests flask_admin/tests

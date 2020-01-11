@@ -1,0 +1,43 @@
+<html>
+
+{% include "headers.html" %}
+
+<body>
+	<div class="box">
+		<div class="container-4">
+						
+			<h3 style="color:white"> Models:  </h3>
+			<form action = "/nvli-search/toggle_model" method = "post">
+				<table border = 1 style="color:white">
+					<tr>
+						<th> Model Name </th>
+						<th> Model Version </th>
+						<th> Model Status </th>
+						<th> Toggle </th>
+					</tr>
+					{% for i,model_info in enumerate(result.models,1) %}
+						<tr>
+									<td> {{ model_info.name }} </td>
+									<td> {{ model_info.version }} </td>
+									{% if model_info.flag == 1 %}
+									<td> Enabled </td>
+									<td>										
+										<input type="submit" name="{{ "" ~  model_info.mv_id }}" value="Disable">	
+									</td>
+									{% else %}
+									<td> Disabled </td>
+									<td>										
+										<input type="submit" name="{{ "" ~  model_info.mv_id }}" value="Enable">
+									</td>
+									{% endif %}	
+						</tr>
+					{% endfor %}
+					<br>
+				</table>				
+			</form>
+			<br>
+		</div>	
+	</div>
+
+</body>
+</html>

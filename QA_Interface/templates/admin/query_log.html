@@ -1,0 +1,46 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+{{ super() }}
+<div class="row-fluid">
+	<div>
+        {% if current_user.is_authenticated %}
+	        <h1>NVLI-Admin </h1>
+	        <!--<p class="lead">
+	            Authentication
+	        </p>
+	        <p>
+	            This example shows how you can use Flask-Login for authentication. It is only intended as a basic demonstration.
+	        </p>-->
+	        <h3 style="color:black"> Query Log:  </h3>
+			<table border = 1 style="color:black">
+				<tr>
+					<th> Qid </th>
+					<th> IP </th>
+					<th> URL
+						<br>/nvli&#8209;search/results_new/topn/retrieval_model_id/<br>
+						search_model_id/show_context/query
+					</th>
+					<th> Response Obj </th>
+					<th> Correct Ans Rank </th>
+					<th> Time </th>
+				</tr>
+				{% for i,queries in enumerate(result.output,1) %}
+					<tr>
+					{% for j,query in enumerate(queries) %}
+					
+						{% if query is not none %}
+						<td> {{ query }} </td>
+						{% else %}
+						<td> None </td>
+						{% endif %}	
+					{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+			<br>
+        {% endif %}
+    </div>
+
+    <a class="btn btn-primary" href="/admin"><i class="icon-arrow-left icon-white"></i> Back</a>
+</div>
+{% endblock body %}

@@ -1,0 +1,27 @@
+<html>
+
+{% include "headers.html" %}
+
+<body>
+
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    <script>
+	      var messages = {{ messages | safe }};
+	      for (var i=0; i<messages.length; i++) {
+	        alert(messages[i]);
+	      }
+	    </script>
+	  {% endif %}
+	{% endwith %}
+
+	<div class="box">
+		<div class="container-4">
+			
+			{% include "search_form.html" %}
+
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<html>
+
+{% include "headers.html" %}
+
+<body>
+	<div class="box">
+		<div class="container-4">
+			<h2 style="vertical-align: middle;"> NVLI Question Answering Query Logs </h2>
+			
+			<form action = "/query_log" method = "post"> 
+				<br>
+				<label id="rpp"> Rows per page: </label>
+				<select name="row_pp">
+					<option value="25" selected="selected"> 25 </option>
+					<option value="50"> 50 </option>
+					<option value="100"> 100 </option>
+				</select>
+				
+				<br><br>
+				<label> Sort By: </label>
+				<select name="sort_by">
+					<option value="model"> Datetime </option>
+					<option value="qid"> Model (alphabetical) </option>
+				</select>
+				<select name="sort_by_order">
+					<option value="asc"> Ascending </option>
+					<option value="desc"> Descending </option>
+				</select>
+
+				<br>
+				<h3> <strong> Filter By: </strong> </h5>
+
+				<label> Model: </label>
+				<select name="sort_by_model">
+					<option value="all"> Default (all) </option>
+					{% for i in result.models %}
+						<option value="{{ "" ~ i[0] }}"> {{ i[1] }} </option>					
+					{% endfor %}
+				</select>
+				
+				<br><br>
+				<label style="width: 180px"> <strong> Query Datetime Range:  </strong></label>
+				<label> From: </label>
+				<input type="date" name="from_date">
+				<label style="margin-left: 10px; width: 50px"> To: </label>
+				<input type="date" name="to_date">
+				
+				<br><br>
+				<label style="width: 100px"> IP address: </label>
+				<input type="text" name="ip" placeholder="xxx.xxx.xxx.xxx">
+				
+				<br><br>
+				<input type="checkbox" name="feedback_check" value="show_feedback" checked >
+				<label id="no_width" style="width: 250px"> 
+					Only show Queries with feedback
+				</label>
+<!--				<label> Filter By: </label>
+			<select name="model">
+				{% for i in result.models %}
+					<option value="{{ "" ~ i[0] }}"> {{ i[1] }} </option>					
+				{% endfor %}
+
+			</select>
+			<input type="submit" name="submit_request" value="Apply", style="float: right;width: 24.5%">
+			</form>
+			
+			<h3 style="color:white"> Question: {{result.ques}} </h3>
+			<form action = "/submit_feedback" method = "post">
+				<table border = 1 style="color:white">
+					<tr>
+						{% for i in result.headers %}
+							<th> {{i}} </th>
+						{% endfor %}
+					</tr>
+					
+					{% for i,scores in enumerate(result.scores,1) %}
+						<tr>
+							{% for j,score in enumerate(scores) %}
+								{% if j == 0 %}
+									<td>
+										<div class="radiotext">
+											<label for='regular'> {{score}} </label>
+										</div>
+									</td>		
+								{% else %}
+									<td> {{ score }} </td>
+								{% endif %}
+							{% endfor %}
+							<td>
+								<div class="radio">
+									 <label><input type="radio" id='regular' name="optradio" value="{{ "" ~  i }}"> Select </label>
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+					<br>
+				</table>
+				<input type="hidden" name="query_id" value="{{ "" ~ result.query_id }}">
+				
+				
+			</form>
+			<br>
+			{% if result.show_context == 'True' %}
+				{% for j,i in enumerate(result.output_text, 1) %}
+					<label> <b> Context {{j}}: </b> </label>
+					<label> {{i}} </label>
+					<br> <br>
+				{% endfor %}
+
+			{% endif %}-->
+		</div>	
+	</div>
+
+</body>
+</html>

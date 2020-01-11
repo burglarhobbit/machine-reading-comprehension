@@ -1,0 +1,374 @@
+Traceback (most recent call last):
+  File "flaskr.py", line 103, in <module>
+    app.run(host="0.0.0.0", port=9002, debug = True)
+  File "/home/search/miniconda2/lib/python2.7/site-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/home/search/miniconda2/lib/python2.7/site-packages/werkzeug/serving.py", line 720, in run_simple
+    s.bind((hostname, port))
+  File "/home/search/miniconda2/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+Traceback (most recent call last):
+  File "flaskr.py", line 103, in <module>
+    app.run(host="0.0.0.0", port=9002, debug = True)
+  File "/home/search/miniconda2/lib/python2.7/site-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/home/search/miniconda2/lib/python2.7/site-packages/werkzeug/serving.py", line 720, in run_simple
+    s.bind((hostname, port))
+  File "/home/search/miniconda2/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+ * Running on http://0.0.0.0:9002/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+10.196.18.149 - - [21/Feb/2018 20:37:48] "[37mGET / HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:37:48] "[37mGET / HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:37:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+10.196.18.149 - - [21/Feb/2018 20:38:07] "[37mGET / HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:13] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 59, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:38:13] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:13] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:13] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:14] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:14] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:14] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:35] "[1m[35mGET /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 62, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+UnboundLocalError: local variable 'topn' referenced before assignment
+10.196.18.149 - - [21/Feb/2018 20:38:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:36] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+ * Detected change in '/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py', reloading
+who is nehru
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+10.196.18.149 - - [21/Feb/2018 20:38:46] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 61, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:38:46] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:46] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:46] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:47] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:38:47] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:39:12] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 61, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:39:12] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:39:12] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:39:12] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:39:13] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:39:13] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+ * Detected change in '/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py', reloading
+who is nehru
+who is nehru
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+ * Detected change in '/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+ * Running on http://0.0.0.0:9002/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+10.196.18.149 - - [21/Feb/2018 20:40:31] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 62, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:40:31] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:40:31] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:40:31] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:40:32] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:40:32] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+ * Detected change in '/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py', reloading
+who is nehru
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+10.196.18.149 - - [21/Feb/2018 20:41:20] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 62, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:41:20] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:41:20] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:41:20] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:41:21] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:41:21] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:30] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 62, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:43:30] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:30] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:30] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:31] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:31] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:35] "[1m[35mPOST /extract HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py", line 62, in extract
+    return redirect(url_for('results', ques = question, topn = topn))
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
+    force_external=external)
+  File "/home/search/miniconda2/envs/drqa/lib/python3.6/site-packages/werkzeug/routing.py", line 1768, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'results' with values ['ques', 'topn']. Did you forget to specify values ['model']?
+10.196.18.149 - - [21/Feb/2018 20:43:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+10.196.18.149 - - [21/Feb/2018 20:43:35] "[37mGET /extract?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+ * Detected change in '/home/search/DrQA/scripts/pipeline/flaskr/flaskr/flaskr.py', reloading
+who is nehru
+who is nehru
+who is nehru
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
+ * Running on http://0.0.0.0:9002/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 486-324-536
