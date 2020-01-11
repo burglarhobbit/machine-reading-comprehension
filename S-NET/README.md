@@ -1,76 +1,86 @@
-# R-Net and S-NET
-  * A Tensorflow implementation of [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf) and [S-NET: FROM ANSWER EXTRACTION TO ANSWER
-GENERATION FOR MACHINE READING COMPREHENSION](https://arxiv.org/pdf/1706.04815.pdf). This project is specially designed for the [SQuAD](https://arxiv.org/pdf/1606.05250.pdf) dataset.
-  * Should you have any question, please contact Wenxuan Zhou (wzhouad@connect.ust.hk).
+# S-NET
+  * A Tensorflow implementation of [S-NET: FROM ANSWER EXTRACTION TO ANSWER GENERATION FOR MACHINE READING COMPREHENSION](https://arxiv.org/pdf/1706.04815.pdf). This project is specially designed for the [MS-MARCO](https://arxiv.org/pdf/1611.09268.pdf) dataset.
 
 ## Requirements
+
 #### General
   * Python >= 3.4
   * unzip, wget
 #### Python Packages
-  * Tensorflow == 1.4.0
+  * tensorflow-gpu == 1.4.0
   * spaCy >= 2.0.0
   * tqdm
   * ujson
 
-## Usage
+# HOW TO RUN
 
-To download and preprocess the data, run
+* Download the Question Answering (V1.1) [dataset](http://www.msmarco.org/dataset.aspx).
+* Extract in `~/data/msmarco`
+* Download [GloVe 840B 300d](http://nlp.stanford.edu/data/glove.840B.300d.zip)
+* Extract in `~/data/glove`
+
+To preprocess the data, run
 
 ```bash
-# download SQuAD and Glove
-sh download.sh
 # preprocess the data
-python config.py --mode prepro
+python config_msm.py --mode analyze
 ```
 
-Hyper parameters are stored in config.py. To debug/train/test the model, run
+Hyper parameters are stored in config_msm.py. To train/test the model, run
 
 ```bash
-python config.py --mode debug/train/test
+python config_msm.py --mode train/test
 ```
 
-To get the official score, run
+# S-NET IMPLEMENTATION TRACKER:
 
-```bash
-python evaluate-v1.1.py ~/data/squad/dev-v1.1.json log/answer/answer.json
-```
+### Evidence Extraction
+---
+1. :heavy_exclamation_mark: snet_without_pr: SNET without passage ranking
+	* Hard coding tensorflow build using Pythonic for-loops on preconfigured number of paragraphs, regardless of how many actual paragraphs are there. **Inefficient.**
+2. :heavy_exclamation_mark: snet_with_pr: SNET with passage ranking
+	* Same as 1, but with passage ranking.
+3. :heavy_exclamation_mark: snet_without_pr_test: SNET without passage ranking ???
+4. :heavy_exclamation_mark: snet_without_pr_para_strip: (model2.py)
+	* Complex method, which dynamically strips the padding by using tf while loops on the predicted y1 (start) and y2 (end) variable. * **Bad idea** since it messes with the start and end positions.
+5. :heavy_exclamation_mark: snet_without_pr_para_strip_vp: (model2.py)
+	* Dynamically strips the padding using a mask by using tf while loops on the predicted vps.
+	* Somewhat better idea to strip paddings of vps using a precomputed mask and then continue to the rest of the model. 
+6. :+1: snet_refactored_from_rnet: (model2.py)
+	* Tried a different approach from scratch rnet code, much cleaner implementation which also solved infinite loss issue during training. What I did was used python for loop to build the model until the maximum allowed paragraphs as saved in the config.
+	* I had to use Python for loop for that, since it needs to run the tf.cond at least once, I needed instantiated RNN objects. But also, inside the code, if the actual para count is less then the max allowed limit, then when actual para number gets exceeded during tensorflow training session, vp is not computed for those indexes and previous index's results are returned (DUMMY function).
+	* After that, vps are again sliced using a boolean mask for representing all paras as a single concatenated one without any padding in between.
 
-The default directory for tensorboard log file is `log/event`
+7. :+1: snet_refactored_from_rnet_with_pr
+	* Same as above, but with passage ranking
+8. :large_blue_circle: snet_refactored_from_rnet_with_pr_floyd -> code for running on floyd cloud
+9. :large_blue_circle: snet_refactored_from_rnet_with_pr_newgru -> ???
 
-## Detailed Implementaion
+### Answer Generation
+---
 
-  * The original paper uses additive attention, which consumes lots of memory. This project adopts scaled multiplicative attention presented in [Attention Is All You Need](https://arxiv.org/abs/1706.03762).
-  * This project adopts variational dropout presented in [A Theoretically Grounded Application of Dropout in Recurrent Neural Networks](https://arxiv.org/abs/1512.05287).
-  * To solve the degradation problem in stacked RNN, outputs of each layer are concatenated to produce the final output.
-  * When the loss on dev set increases in a certain period, the learning rate is halved.
-  * During prediction, the project adopts search method presented in [Machine Comprehension Using Match-LSTM and Answer Pointer](https://arxiv.org/abs/1608.07905).
-  * To address efficiency issue, this implementation uses bucketing method (contributed by xiongyifan) and CudnnGRU. Due to a known bug [#13254](https://github.com/tensorflow/tensorflow/issues/13254) in Tensorflow, the weights of CudnnGRU may not be properly restored. Check the test score if you want to use it for prediction. The bucketing method can speedup the training, but will lower the F1 score by 0.3%.
+10. :large_blue_circle: nmt
+11. :large_blue_circle: nmt_snet
+12. :large_blue_circle: nmt_snet_2
+	* working with question data integration. (No model changes)
+13. :large_blue_circle: nmt_snet_3
+	* working with question data integration. (With all model changes)
+	* Pending: append fs and fe vectors.
+14. :large_blue_circle: nmt_snet_4
+	* working with question data integration + fs,fe vector append. (With all model changes)
+15. :+1: nmt_snet_5
+	* working with snet_ee (6, 7) data integration
+16. :heavy_exclamation_mark: nmt_snet_ans_syn (idk?)
+17. :heavy_exclamation_mark: snet_ee
+	* old, irrelevant
+18. :heavy_exclamation_mark: snet_ee2
+	* old, irrelevant
+19. :heavy_exclamation_mark: snet_ee3
+	* old, irrelevant
+20. :heavy_exclamation_mark: snet_pr_multipara
+	* old, irrelevant
+21. :heavy_exclamation_mark: snet_with_answer_synthesis
+	* old, irrelevant
 
-## Performance
-
-#### Score
-
-||EM|F1|
-|---|---|---|
-|original paper|71.1|79.5|
-|this project|71.07|79.51|
-
-<img src="img/em.jpg" width="300">
-
-<img src="img/f1.jpg" width="300">
-
-#### Training Time (s/it)
-
-||Native|Native + Bucket|Cudnn|Cudnn + Bucket|
-|---|---|---|---|---|
-|E5-2640|6.21|3.56|-|-|
-|TITAN X|2.72|1.67|0.61|0.35|
-
-## Extensions
-
-These settings may increase the score but not used in the model by default. You can turn these settings on in `config.py`. 
-
- * [Pretrained GloVe character embedding](https://github.com/minimaxir/char-embeddings). Contributed by yanghanxy.
- * [Fasttext Embedding](https://fasttext.cc/docs/en/english-vectors.html). Contributed by xiongyifan. May increase the F1 by 1% (reported by xiongyifan).
-
+* Acknowledgements: The implementation of Evidence Extraction is derived from [R-NET on SQuAD](https://github.com/HKUST-KnowComp/R-Net). 
+* The implementation of Answer Synthesis is derived from: [Neural Machine Translation](https://github.com/tensorflow/nmt)
