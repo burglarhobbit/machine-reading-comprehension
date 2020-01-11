@@ -1,5 +1,5 @@
-# R-NET on MS-MARCO Dataset
-	* A Tensorflow implementation of [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf). This project is specially designed for the [MS-MARCO](https://arxiv.org/pdf/1611.09268.pdf) dataset.
+# R-NET
+  * A Tensorflow implementation of [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf). This project is specially designed for the [MS-MARCO](https://arxiv.org/pdf/1611.09268.pdf) dataset.
 
 ## Requirements
 
